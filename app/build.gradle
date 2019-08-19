@@ -8,6 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "giavu.co.jp.connpassx"
+        multiDexEnabled true
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
@@ -19,6 +20,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
