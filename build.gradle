@@ -42,4 +42,5 @@ ext {
     PAGING_VERSION = '2.0.0'
     OKHTTP_VERSION = '3.13.1'
     RETROFIT_VERSION = '2.5.0'
+    TIMBER_VERSION = '4.7.1'
 }
