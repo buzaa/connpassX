@@ -1,8 +1,9 @@
-package giavu.co.jp.connpassx
+package giavu.co.jp.connpassx.main
 
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import giavu.co.jp.connpassx.R
 
 class MainActivity : AppCompatActivity() {
 
