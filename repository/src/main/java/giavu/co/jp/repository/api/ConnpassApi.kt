@@ -11,7 +11,7 @@ import retrofit2.http.Query
  */
 interface ConnpassApi {
 
-    @GET("v1/event")
+    @GET("api/v1/event")
     fun fetch(): Single<ConnpassEvent>
 
     @GET("v1/event")

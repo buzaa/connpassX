@@ -15,9 +15,7 @@ class CPXApiAccessor(private val context: Context) : ApiAccessor(context = conte
 
     override fun onCreateHeaders(headers: MutableMap<String, String>) {
         headers.apply {
-            put(ApiHeader.KEY_AUTHORIZATION, context.getString(R.string.app_name))
             put(ApiHeader.CONTENT_TYPE, ApiHeader.VALUE_ACCEPT_JSON)
-            put(ApiHeader.KEY_USER_AGENT, UserSharePreference.fromContext(context).getUserSession())
         }
     }
 

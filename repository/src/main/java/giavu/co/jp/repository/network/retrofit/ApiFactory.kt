@@ -11,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.io.IOException
 
 /**
@@ -51,6 +52,7 @@ class ApiFactory(
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
             val request = RequestFactory(headerAccessor.get(), chain.request()).create()
+            Timber.d(request.toString())
             return chain.proceed(request)
         }
     }

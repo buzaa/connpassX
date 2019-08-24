@@ -6,13 +6,12 @@ import giavu.co.jp.repository.network.exception.ResponseCode
 import okhttp3.ConnectionPool
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
-import java.util.*
 
 /**
  * @Author: Hoang Vu
  * @Date:   2019/01/03
  */
-abstract class ApiAccessor(private val context: Context) : ApiFactory.HeaderAccessor {
+abstract class ApiAccessor(private val context: Context): ApiFactory.HeaderAccessor{
     private val connectionPool = ConnectionPool()
     private val interceptor = createLoggingInterceptor()
 
@@ -24,7 +23,6 @@ abstract class ApiAccessor(private val context: Context) : ApiFactory.HeaderAcce
 
 
     internal abstract fun getBaseUrl(): String
-
     internal abstract fun onCreateHeaders(headers: MutableMap<String, String>)
 
     fun <T> using(klass: Class<T>): T {
@@ -49,9 +47,10 @@ abstract class ApiAccessor(private val context: Context) : ApiFactory.HeaderAcce
         }
     }
 
-    override fun get(): MutableMap<String, String> {
+    override fun get(): Map<String, String> {
         val headers = HashMap<String, String>()
         onCreateHeaders(headers)
         return headers
+
     }
 }
