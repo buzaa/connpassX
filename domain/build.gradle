@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -24,8 +25,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(":repository")
+    api project(':repository')
+
     api "io.reactivex.rxjava2:rxandroid:${RXANDROID_VERSION}"
     api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
