@@ -10,6 +10,9 @@ import retrofit2.http.Query
  */
 interface ConnpassApi {
 
-    @GET("quotes")
-    fun fetch(@Query("page") page: Int): Single<String>
+    @GET("v1/event")
+    fun get(
+        @Query("page") page: Int,
+        @Query("key") key: String
+    ): Single<String>
 }

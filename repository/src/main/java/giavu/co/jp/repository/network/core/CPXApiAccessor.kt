@@ -10,7 +10,7 @@ import giavu.co.jp.repository.network.retrofit.ApiAccessor
  */
 class CPXApiAccessor(private val context: Context) : ApiAccessor(context = context) {
     override fun getBaseUrl(): String {
-        return context.getString(R.string.app_name) + "://" + context.getString(R.string.app_name)
+        return context.getString(R.string.app_scheme) + "://" + context.getString(R.string.connpass_api)
     }
 
     override fun onCreateHeaders(headers: MutableMap<String, String>) {
