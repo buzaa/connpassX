@@ -1,5 +1,6 @@
 package giavu.co.jp.repository.api
 
+import giavu.co.jp.repository.model.ConnpassEvent
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,8 +12,13 @@ import retrofit2.http.Query
 interface ConnpassApi {
 
     @GET("v1/event")
+    fun fetch(): Single<ConnpassEvent>
+
+    @GET("v1/event")
     fun get(
-        @Query("page") page: Int,
-        @Query("key") key: String
+        @Query("keyword") keyword: String,
+        @Query("count") count: Int
     ): Single<String>
+
+
 }
