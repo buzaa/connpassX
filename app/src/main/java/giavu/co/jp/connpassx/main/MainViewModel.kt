@@ -3,9 +3,14 @@ package giavu.co.jp.connpassx.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx2.await
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
@@ -22,8 +27,25 @@ class MainViewModel : ViewModel() {
     fun init(fetchConnpassEventUseCase: FetchConnpassEventUseCase) {
         this.fetchConnpassEventUseCase = fetchConnpassEventUseCase
         fetchEvent()
-        Timber.d("init")
-        /*fetchConnpassEventUseCase.invoke()
+    }
+
+    private fun fetchEvent() {
+        viewModelScope.launch {
+            runCatching {
+                withContext(Dispatchers.IO) {
+                    fetchConnpassEventUseCase().await()
+                }
+            }.onSuccess {
+                Timber.d("Test Coroutine:%s", it.toString())
+            }.onFailure {
+
+            }
+
+        }
+    }
+
+    private fun fetchEventByRx() {
+        fetchConnpassEventUseCase.invoke()
             .subscribeOn(Schedulers.io())
             .doOnSubscribe {
                 Timber.d("Do something")
@@ -38,23 +60,7 @@ class MainViewModel : ViewModel() {
                     Timber.d("Result: %s", it.toString())
                 }
             )
-            .addTo(compositeDisposable)*/
-    }
-
-    private fun fetchEvent() {
-        viewModelScope.launch {
-
-            runCatching {
-                withContext(Dispatchers.IO) {
-                    fetchConnpassEventUseCase.invoke().blockingGet()
-                }
-            }.onSuccess {
-                Timber.d("Test Coroutine:%s", it.toString())
-            }.onFailure {
-
-            }
-
-        }
+            .addTo(compositeDisposable)
     }
 
 
