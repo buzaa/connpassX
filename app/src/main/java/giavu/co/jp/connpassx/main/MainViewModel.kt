@@ -1,6 +1,5 @@
 package giavu.co.jp.connpassx.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,8 +17,10 @@ class MainViewModel : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
+    private lateinit var fetchConnpassEventUseCase: FetchConnpassEventUseCase
+
     fun init(fetchConnpassEventUseCase: FetchConnpassEventUseCase) {
-        Log.d("HH", "Ko hieu")
+        this.fetchConnpassEventUseCase = fetchConnpassEventUseCase
         Timber.d("init")
         fetchConnpassEventUseCase.invoke()
             .subscribeOn(Schedulers.io())
@@ -38,6 +39,11 @@ class MainViewModel : ViewModel() {
             )
             .addTo(compositeDisposable)
     }
+
+    private fun fetchEvent() {
+        viewModelS
+    }
+
 
     override fun onCleared() {
         super.onCleared()
