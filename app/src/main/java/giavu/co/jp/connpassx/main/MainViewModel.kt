@@ -40,7 +40,6 @@ class MainViewModel : ViewModel() {
             }.onFailure {
 
             }
-
         }
     }
 
