@@ -13,6 +13,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initializeView() {
-        
+
     }
 }
