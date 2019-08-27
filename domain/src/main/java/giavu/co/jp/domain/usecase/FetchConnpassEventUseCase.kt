@@ -13,6 +13,6 @@ class FetchConnpassEventUseCase(
 ) {
 
     operator fun invoke(): Single<ConnpassEvent> {
-        return connpassApi.fetch()
+        return connpassApi.searchByKeyword()
     }
 }

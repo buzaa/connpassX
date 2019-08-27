@@ -12,13 +12,16 @@ import retrofit2.http.Query
 interface ConnpassApi {
 
     @GET("v1/event")
-    fun fetch(): Single<ConnpassEvent>
+    fun searchByKeyword(@Query("keyword_or") keyword: String): Single<ConnpassEvent>
 
     @GET("v1/event")
-    fun get(
-        @Query("keyword") keyword: String,
-        @Query("count") count: Int
-    ): Single<String>
+    fun searchByOrganizeDate(@Query("ymd") yyyymmdd: String): Single<ConnpassEvent>
+
+    @GET("v1/event")
+    fun searchByMonth(@Query("ym") yyyymm: String): Single<ConnpassEvent>
+
+    @GET("v1/event")
+    fun getSeries(@Query("count") count: Int? = 10): Single<ConnpassEvent>
 
 
 }
