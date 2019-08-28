@@ -10,7 +10,6 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx2.await
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
@@ -33,7 +32,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
-                    fetchConnpassEventUseCase().await()
+                    fetchConnpassEventUseCase.searchByWord()
                 }
             }.onSuccess {
                 Timber.d("Test Coroutine:%s", it.toString())
@@ -44,7 +43,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun fetchEventByRx() {
-        fetchConnpassEventUseCase.invoke()
+        fetchConnpassEventUseCase.searchByWord()
             .subscribeOn(Schedulers.io())
             .doOnSubscribe {
                 Timber.d("Do something")
