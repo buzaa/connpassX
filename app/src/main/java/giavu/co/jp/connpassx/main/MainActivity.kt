@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val data: Array<Series> by lazy {
+    /*private val data: Array<Series> by lazy {
         intent.getParcelableArrayExtra(KEY_DATA) as? Array<Series>?
-    }
+    }*/
 
     private val viewModel: MainViewModel by inject()
     private val fetchConnpassEventUseCase: FetchConnpassEventUseCase by inject()

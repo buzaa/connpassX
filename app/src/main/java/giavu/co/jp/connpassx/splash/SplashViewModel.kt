@@ -33,7 +33,11 @@ class SplashViewModel(
     val seriesEvent: LiveData<List<Series>>
         get() = _seriesEvent
 
-    fun fetchSeries() {
+    fun initialize() {
+        fetchSeries()
+    }
+
+    private fun fetchSeries() {
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {

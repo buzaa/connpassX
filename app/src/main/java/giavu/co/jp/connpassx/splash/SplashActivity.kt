@@ -18,7 +18,11 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
+        initializeViewModel()
+    }
 
+    private fun initializeViewModel() {
+        viewModel.initialize()
     }
 
     private fun observeViewModel() {
