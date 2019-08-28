@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
-import giavu.co.jp.repository.model.Series
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx2.await
@@ -29,8 +29,8 @@ class SplashViewModel(
     val requestStateEvent: LiveData<State>
         get() = _requestStateEvent
 
-    private val _seriesEvent = MutableLiveData<List<Series>>()
-    val seriesEvent: LiveData<List<Series>>
+    private val _seriesEvent = MutableLiveData<ConnpassSeries>()
+    val seriesEvent: LiveData<ConnpassSeries>
         get() = _seriesEvent
 
     fun initialize() {
@@ -49,7 +49,6 @@ class SplashViewModel(
                 Timber.e(it)
             }
         }
-
     }
 
 }
