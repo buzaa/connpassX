@@ -1,8 +1,8 @@
 package giavu.co.jp.domain.usecase
 
+import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.repository.api.ConnpassApi
 import giavu.co.jp.repository.model.ConnpassEvent
-import giavu.co.jp.repository.model.Series
 import io.reactivex.Single
 
 /**
@@ -13,7 +13,7 @@ class FetchConnpassEventUseCase(
     private val connpassApi: ConnpassApi
 ) {
 
-    fun fetchSeries(): Single<List<Series>> {
+    fun fetchSeries(): Single<ConnpassSeries> {
         return connpassApi.getSeries().map(::seriesMapper)
     }
 
@@ -21,9 +21,11 @@ class FetchConnpassEventUseCase(
         return connpassApi.searchByKeyword(keyword = "android")
     }
 
-    private fun seriesMapper(connpassEvent: ConnpassEvent): List<Series> {
-        return connpassEvent.events.map {
-            it.series
-        }
+    private fun seriesMapper(connpassEvent: ConnpassEvent): ConnpassSeries {
+        return ConnpassSeries(
+            series = connpassEvent.events.map {
+                it.series
+            }
+        )
     }
 }
