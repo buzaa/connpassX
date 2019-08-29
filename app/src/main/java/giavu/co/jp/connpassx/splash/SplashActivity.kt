@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import giavu.co.jp.connpassx.R
+import giavu.co.jp.connpassx.main.MainActivity
 import org.koin.android.ext.android.inject
 
 class SplashActivity : AppCompatActivity() {
@@ -27,8 +28,8 @@ class SplashActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         with(viewModel) {
-            seriesEvent.observe(this@SplashActivity, Observer {
-
+            seriesLoadedEvent.observe(this@SplashActivity, Observer {
+                startActivity(MainActivity.createIntent(this@SplashActivity, it))
             })
         }
     }

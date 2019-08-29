@@ -7,8 +7,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import giavu.co.jp.connpassx.R
 import giavu.co.jp.domain.model.ConnpassSeries
-import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +24,11 @@ class MainActivity : AppCompatActivity() {
 
     private val data: ConnpassSeries? by lazy {
         intent.getSerializableExtra(KEY_DATA) as? ConnpassSeries
+    }.also {
+        Timber.d("Data:%s", it.toString())
     }
 
     private val viewModel: MainViewModel by inject()
-    private val fetchConnpassEventUseCase: FetchConnpassEventUseCase by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel.init(fetchConnpassEventUseCase)
     }
 }

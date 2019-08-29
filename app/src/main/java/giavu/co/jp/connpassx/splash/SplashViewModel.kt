@@ -20,18 +20,9 @@ class SplashViewModel(
     private val fetchConnpassEventUseCase: FetchConnpassEventUseCase
 ) : ViewModel() {
 
-    enum class State {
-        SUCCESS,
-        FAILURE
-    }
-
-    private val _requestStateEvent = MutableLiveData<State>()
-    val requestStateEvent: LiveData<State>
-        get() = _requestStateEvent
-
-    private val _seriesEvent = MutableLiveData<ConnpassSeries>()
-    val seriesEvent: LiveData<ConnpassSeries>
-        get() = _seriesEvent
+    private val _seriesLoadedEvent = MutableLiveData<ConnpassSeries>()
+    val seriesLoadedEvent: LiveData<ConnpassSeries>
+        get() = _seriesLoadedEvent
 
     fun initialize() {
         fetchSeries()
@@ -44,7 +35,7 @@ class SplashViewModel(
                     fetchConnpassEventUseCase.fetchSeries().await()
                 }
             }.onSuccess {
-                _seriesEvent.value = it
+                _seriesLoadedEvent.value = it
             }.onFailure {
                 Timber.e(it)
             }
