@@ -21,7 +21,7 @@ interface ConnpassApi {
     fun searchByMonth(@Query("ym") yyyymm: String): Single<ConnpassEvent>
 
     @GET("v1/event")
-    fun getSeries(@Query("count") count: Int? = 10): Single<ConnpassEvent>
+    suspend fun getSeries(@Query("count") count: Int? = 10): ConnpassEvent
 
 
 }

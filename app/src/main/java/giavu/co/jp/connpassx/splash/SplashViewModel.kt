@@ -8,7 +8,6 @@ import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx2.await
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
@@ -32,7 +31,7 @@ class SplashViewModel(
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    fetchConnpassEventUseCase.fetchSeries().await()
+                    fetchConnpassEventUseCase.fetchSeries()
                 }
             }.onSuccess {
                 _seriesLoadedEvent.value = it

@@ -13,8 +13,8 @@ class FetchConnpassEventUseCase(
     private val connpassApi: ConnpassApi
 ) {
 
-    fun fetchSeries(): Single<ConnpassSeries> {
-        return connpassApi.getSeries().map(::seriesMapper)
+    suspend fun fetchSeries(): ConnpassSeries {
+        return seriesMapper(connpassApi.getSeries())
     }
 
     fun searchByWord(): Single<ConnpassEvent> {
