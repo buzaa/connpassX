@@ -30,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
         with(viewModel) {
             seriesLoadedEvent.observe(this@SplashActivity, Observer {
                 startActivity(MainActivity.createIntent(this@SplashActivity, it))
+                finish()
             })
         }
     }
