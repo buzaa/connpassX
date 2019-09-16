@@ -32,6 +32,9 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(MainActivity.createIntent(this@SplashActivity, it))
                 finish()
             })
+            loadFailureEvent.observe(this@SplashActivity, Observer {
+                finish()
+            })
         }
     }
 }

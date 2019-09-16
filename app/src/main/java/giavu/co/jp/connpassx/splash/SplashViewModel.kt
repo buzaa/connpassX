@@ -20,8 +20,12 @@ class SplashViewModel(
 ) : ViewModel() {
 
     private val _seriesLoadedEvent = MutableLiveData<ConnpassSeries>()
+    private val _loadFailureEvent = MutableLiveData<Unit>()
+
     val seriesLoadedEvent: LiveData<ConnpassSeries>
         get() = _seriesLoadedEvent
+    val loadFailureEvent: LiveData<Unit>
+        get() = _loadFailureEvent
 
     fun initialize() {
         fetchSeries()
@@ -36,7 +40,8 @@ class SplashViewModel(
             }.onSuccess {
                 _seriesLoadedEvent.value = it
             }.onFailure {
-                Timber.e(it)
+                _loadFailureEvent.value = Unit
+                Timber.w(it)
             }
         }
     }
