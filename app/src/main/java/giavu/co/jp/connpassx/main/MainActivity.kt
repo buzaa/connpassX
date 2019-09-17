@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private val data: ConnpassSeries? by lazy {
         intent.getSerializableExtra(KEY_DATA) as? ConnpassSeries
-    }.also {
-        Timber.d("Data:%s", it.toString())
     }
 
     private val viewModel: MainViewModel by inject()
@@ -37,9 +35,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
+        initView()
         initViewModel()
     }
 
+    private fun initView(){
+        Timber.d("Loading data is : %s", data?.toString())
+    }
     private fun initViewModel() {
     }
 }
