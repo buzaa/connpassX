@@ -19,6 +19,11 @@
         <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
+    <style name="AppTheme.TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="Title">
         <item name="android:textSize">19sp</item>
         <item name="android:lineSpacingExtra">5sp</item>

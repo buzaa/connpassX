@@ -35,7 +35,6 @@ class SplashActivity : AppCompatActivity() {
     private fun observeDialog() {
         with(ViewModelProvider(this).get(TAG_DIALOG_ERROR, ErrorDialogViewModel::class.java)) {
             closeEvent.observe(this@SplashActivity, Observer {
-                Timber.d("dialog")
                 this@SplashActivity.finish()
             })
         }
