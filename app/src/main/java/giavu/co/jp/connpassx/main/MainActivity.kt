@@ -4,11 +4,14 @@ package giavu.co.jp.connpassx.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import giavu.co.jp.connpassx.R
 import giavu.co.jp.domain.model.ConnpassSeries
+import kotlinx.android.synthetic.main.layout_bottom_sheet.*
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val viewModel: MainViewModel by inject()
+    private lateinit var sheetBehavior: BottomSheetBehavior<LinearLayout>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +43,25 @@ class MainActivity : AppCompatActivity() {
         initViewModel()
     }
 
-    private fun initView(){
-        Timber.d("Loading data is : %s", data?.toString())
+    private fun initView() {
+        sheetBehavior = BottomSheetBehavior.from<LinearLayout>(bottom_sheet)
+        sheetBehavior.setBottomSheetCallback(callback)
     }
+
     private fun initViewModel() {
+    }
+
+    private val callback = object : BottomSheetBehavior.BottomSheetCallback() {
+        override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            if (sheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+                sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+
+        override fun onStateChanged(bottomSheet: View, state: Int) {
+        }
+
     }
 }
