@@ -77,8 +77,8 @@ class ErrorDialogFragment : DialogFragment() {
     private fun findViewModel(): ErrorDialogViewModel? {
         return activity?.let {
             when (val key = tag) {
-                null -> ViewModelProvider(this).get(ErrorDialogViewModel::class.java)
-                else -> ViewModelProvider(this).get(key, ErrorDialogViewModel::class.java)
+                null -> ViewModelProvider(it).get(ErrorDialogViewModel::class.java)
+                else -> ViewModelProvider(it).get(key, ErrorDialogViewModel::class.java)
             }
         }
     }
