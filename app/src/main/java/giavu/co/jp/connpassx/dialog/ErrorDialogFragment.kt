@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import giavu.co.jp.connpassx.R
 import giavu.co.jp.connpassx.databinding.DialogErrorFragmentBinding
+import giavu.co.jp.connpassx.extension.setOnProtectBarrageClickListener
 
 /**
  * @Author: Hoang Vu
@@ -52,6 +53,9 @@ class ErrorDialogFragment : DialogFragment() {
         ).apply {
             lifecycleOwner = this@ErrorDialogFragment
             contents = data
+            closeButton.setOnProtectBarrageClickListener {
+                dismiss()
+            }
         }.root
     }
 

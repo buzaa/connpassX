@@ -10,6 +10,7 @@ import giavu.co.jp.connpassx.dialog.ErrorDialogViewModel
 import giavu.co.jp.connpassx.extension.showErrorDialog
 import giavu.co.jp.connpassx.main.MainActivity
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class SplashActivity : AppCompatActivity() {
 
@@ -49,6 +50,7 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             })
             loadFailureEvent.observe(this@SplashActivity, Observer {
+                Timber.d("Come here")
                 showErrorDialog(
                     contents = ErrorDialogContents(
                         title = "Network error",
