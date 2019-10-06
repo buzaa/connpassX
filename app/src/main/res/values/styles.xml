@@ -13,4 +13,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/bg_white_round_for_dialog</item>
+        <item name="android:windowBackground">@color/colorTransparent</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
 </resources>
