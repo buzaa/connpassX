@@ -3,11 +3,19 @@ package giavu.co.jp.connpassx.splash
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import giavu.co.jp.connpassx.R
+import giavu.co.jp.connpassx.dialog.ErrorDialogContents
+import giavu.co.jp.connpassx.dialog.ErrorDialogViewModel
+import giavu.co.jp.connpassx.extension.showErrorDialog
 import giavu.co.jp.connpassx.main.MainActivity
 import org.koin.android.ext.android.inject
 
 class SplashActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG_DIALOG_ERROR = "tag_dialog_error"
+    }
 
     private val viewModel: SplashViewModel by inject()
 
@@ -15,15 +23,23 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         initialize()
+        observeDialog()
         observeViewModel()
     }
 
     private fun initialize() {
-        initializeViewModel()
+        viewModel.initialize()
     }
 
-    private fun initializeViewModel() {
-        viewModel.initialize()
+    private fun observeDialog() {
+        with(ViewModelProvider(this).get(TAG_DIALOG_ERROR, ErrorDialogViewModel::class.java)) {
+            closeEvent.observe(
+                this@SplashActivity,
+                Observer {
+                    this@SplashActivity.finish()
+                }
+            )
+        }
     }
 
     private fun observeViewModel() {
@@ -33,7 +49,13 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             })
             loadFailureEvent.observe(this@SplashActivity, Observer {
-                finish()
+                showErrorDialog(
+                    contents = ErrorDialogContents(
+                        title = "Network error",
+                        message = "Please check your network connection !"
+                    ),
+                    tag = TAG_DIALOG_ERROR
+                )
             })
         }
     }

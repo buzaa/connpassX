@@ -33,5 +33,10 @@
     <color name="black">#1D1D1D</color>
     <color name="white">#FFFFFF</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="gray300">#D6D6D6</color>
+    <color name="link_text">@color/blue500</color>
+    <color name="error_text">@color/red500</color>
+    <color name="blue500">#0079CE</color>
+    <color name="red500">#DA2643</color>
 
 </resources>
