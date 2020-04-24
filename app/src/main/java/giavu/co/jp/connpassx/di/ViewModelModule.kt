@@ -2,8 +2,10 @@ package giavu.co.jp.connpassx.di
 
 import giavu.co.jp.connpassx.main.MainViewModel
 import giavu.co.jp.connpassx.splash.SplashViewModel
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.Module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.Module
+import org.koin.dsl.module
+
 
 /**
  * @Author: Hoang Vu
@@ -11,7 +13,7 @@ import org.koin.dsl.module.Module
  */
 class ViewModelModule {
 
-    val module: Module = org.koin.dsl.module.module {
+    val module: Module = module {
         viewModel { MainViewModel() }
         viewModel { SplashViewModel(fetchConnpassEventUseCase = get()) }
     }
