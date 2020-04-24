@@ -1,6 +1,6 @@
 package giavu.co.jp.connpassx.di
 
-import org.koin.dsl.module.Module
+import org.koin.core.module.Module
 
 /**
  * @Author: Hoang Vu
