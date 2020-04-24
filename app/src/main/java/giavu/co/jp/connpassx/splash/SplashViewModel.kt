@@ -1,9 +1,6 @@
 package giavu.co.jp.connpassx.splash
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +14,7 @@ import timber.log.Timber
  */
 class SplashViewModel(
     private val fetchConnpassEventUseCase: FetchConnpassEventUseCase
-) : ViewModel() {
+) : ViewModel(), LifecycleObserver {
 
     private val _seriesLoadedEvent = MutableLiveData<ConnpassSeries>()
     private val _loadFailureEvent = MutableLiveData<Unit>()
@@ -27,7 +24,9 @@ class SplashViewModel(
     val loadFailureEvent: LiveData<Unit>
         get() = _loadFailureEvent
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun initialize() {
+        Timber.d("Initialize!")
         fetchSeries()
     }
 

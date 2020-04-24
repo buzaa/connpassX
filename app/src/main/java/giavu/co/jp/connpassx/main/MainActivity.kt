@@ -39,29 +39,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
-        initView()
         initViewModel()
-    }
-
-    private fun initView() {
-        sheetBehavior = BottomSheetBehavior.from<LinearLayout>(bottom_sheet)
-        sheetBehavior.setBottomSheetCallback(callback)
     }
 
     private fun initViewModel() {
     }
 
-    private val callback = object : BottomSheetBehavior.BottomSheetCallback() {
-        override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            if (sheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
-                sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            } else {
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-        }
-
-        override fun onStateChanged(bottomSheet: View, state: Int) {
-        }
-
-    }
 }

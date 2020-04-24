@@ -23,13 +23,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        initialize()
+        lifecycle.addObserver(viewModel)
         observeDialog()
         observeViewModel()
-    }
-
-    private fun initialize() {
-        viewModel.initialize()
     }
 
     private fun observeDialog() {
