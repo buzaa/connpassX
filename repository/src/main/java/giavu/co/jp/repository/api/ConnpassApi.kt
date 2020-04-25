@@ -12,7 +12,7 @@ import retrofit2.http.Query
 interface ConnpassApi {
 
     @GET("v1/event")
-    fun searchByKeyword(@Query("keyword_or") keyword: String): Single<ConnpassEvent>
+    suspend fun searchByKeyword(@Query("keyword_or") keyword: String): ConnpassEvent
 
     @GET("v1/event")
     fun searchByOrganizeDate(@Query("ymd") yyyymmdd: String): Single<ConnpassEvent>

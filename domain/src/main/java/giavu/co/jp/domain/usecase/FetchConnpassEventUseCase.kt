@@ -4,6 +4,9 @@ import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.repository.api.ConnpassApi
 import giavu.co.jp.repository.model.ConnpassEvent
 import io.reactivex.Single
+import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * @Author: Hoang Vu
@@ -13,12 +16,10 @@ class FetchConnpassEventUseCase(
     private val connpassApi: ConnpassApi
 ) {
 
-    suspend fun fetchSeries(): ConnpassSeries {
-        return seriesMapper(connpassApi.getSeries())
-    }
-
-    fun searchByWord(): Single<ConnpassEvent> {
-        return connpassApi.searchByKeyword(keyword = "android")
+    suspend operator fun invoke(): ConnpassSeries {
+        return withContext(Dispatchers.IO) {
+            seriesMapper(connpassApi.getSeries())
+        }
     }
 
     private fun seriesMapper(connpassEvent: ConnpassEvent): ConnpassSeries {

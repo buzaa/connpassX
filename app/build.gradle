@@ -6,6 +6,11 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs"
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -54,6 +59,20 @@ dependencies {
     implementation "org.koin:koin-androidx-ext:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "com.shopify:livedata-ktx:3.0.0"
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Dynamic Feature Module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
