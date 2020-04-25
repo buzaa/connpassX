@@ -19,6 +19,14 @@
         <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorBackground</item>
+        <item name="android:textColorPrimary">@color/colorBackground</item>
+        <item name="titleTextColor">@color/colorBackground</item>
+        <item name="actionMenuTextColor">@color/colorBackground</item>
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>

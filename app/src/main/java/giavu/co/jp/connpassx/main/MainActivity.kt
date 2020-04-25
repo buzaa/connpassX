@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val viewModel: MainViewModel by inject()
-    private lateinit var sheetBehavior: BottomSheetBehavior<LinearLayout>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
