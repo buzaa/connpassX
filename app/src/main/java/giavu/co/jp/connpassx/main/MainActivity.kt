@@ -4,13 +4,9 @@ package giavu.co.jp.connpassx.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import giavu.co.jp.connpassx.R
 import giavu.co.jp.domain.model.ConnpassSeries
-import kotlinx.android.synthetic.main.layout_bottom_sheet.*
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
