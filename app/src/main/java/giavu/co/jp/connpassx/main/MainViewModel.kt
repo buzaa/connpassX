@@ -3,37 +3,23 @@ package giavu.co.jp.connpassx.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 /**
  * @Author: Hoang Vu
  * @Date:   2019-08-24
  */
-class MainViewModel : ViewModel() {
+class MainViewModel(
+    private val fetchConnpassEventUseCase: FetchConnpassEventUseCase
+) : ViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
-
-    private lateinit var fetchConnpassEventUseCase: FetchConnpassEventUseCase
-
-    fun init(fetchConnpassEventUseCase: FetchConnpassEventUseCase) {
-        this.fetchConnpassEventUseCase = fetchConnpassEventUseCase
-        fetchEvent()
-    }
+    // private val compositeDisposable = CompositeDisposable()
 
     private fun fetchEvent() {
         viewModelScope.launch {
             runCatching {
-                withContext(Dispatchers.IO) {
-                    fetchConnpassEventUseCase.searchByWord()
-                }
+                fetchConnpassEventUseCase()
             }.onSuccess {
                 Timber.d("Test Coroutine:%s", it.toString())
             }.onFailure {
@@ -41,7 +27,7 @@ class MainViewModel : ViewModel() {
             }
         }
     }
-
+/*
     private fun fetchEventByRx() {
         fetchConnpassEventUseCase.searchByWord()
             .subscribeOn(Schedulers.io())
@@ -65,5 +51,5 @@ class MainViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()
-    }
+    }*/
 }

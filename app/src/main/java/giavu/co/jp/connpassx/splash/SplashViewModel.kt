@@ -3,9 +3,7 @@ package giavu.co.jp.connpassx.splash
 import androidx.lifecycle.*
 import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 /**
@@ -32,10 +30,8 @@ class SplashViewModel(
 
     private fun fetchSeries() {
         viewModelScope.launch {
-            kotlin.runCatching {
-                withContext(Dispatchers.IO) {
-                    fetchConnpassEventUseCase.fetchSeries()
-                }
+            runCatching {
+                fetchConnpassEventUseCase()
             }.onSuccess {
                 _seriesLoadedEvent.value = it
             }.onFailure {
