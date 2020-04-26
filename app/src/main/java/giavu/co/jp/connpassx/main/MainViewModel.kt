@@ -3,12 +3,8 @@ package giavu.co.jp.connpassx.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
 import giavu.co.jp.repository.model.ConnpassEvent
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 /**
  * @Author: Hoang Vu
@@ -18,12 +14,12 @@ class MainViewModel(
     private val fetchConnpassEventUseCase: FetchConnpassEventUseCase
 ) : ViewModel() {
 
-    private val _conpassSeries = MutableLiveData<ConnpassSeries>()
-    val conpassSeries: LiveData<ConnpassSeries>
-        get() = _conpassSeries
+    private val _conpassEvent = MutableLiveData<ConnpassEvent>()
+    val conpassEvent: LiveData<ConnpassEvent>
+        get() = _conpassEvent
 
-    fun init(data: ConnpassSeries?) {
-        this._conpassSeries.value = data
+    fun init(data: ConnpassEvent?) {
+        this._conpassEvent.value = data
     }
 
     // private val compositeDisposable = CompositeDisposable()

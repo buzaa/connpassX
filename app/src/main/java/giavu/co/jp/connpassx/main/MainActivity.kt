@@ -40,11 +40,13 @@ class MainActivity : AppCompatActivity() {
             this,
             R.layout.activity_main
         ).apply {
-            /*viewModel = this@MainActivity.viewModel.apply {
+            viewModel = this@MainActivity.viewModel.apply {
                 init(data = data)
-            }*/
+            }
             lifecycleOwner = this@MainActivity
-            // slistEvent.adapter =
+            listEvent.adapter = ConnpassEventAdapter(
+                lifecycleOwner = this@MainActivity
+            )
         }
     }
 
