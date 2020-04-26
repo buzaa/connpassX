@@ -15,13 +15,9 @@ interface ConnpassApi {
     suspend fun searchByKeyword(@Query("keyword_or") keyword: String): ConnpassEvent
 
     @GET("v1/event")
-    fun searchByOrganizeDate(@Query("ymd") yyyymmdd: String): Single<ConnpassEvent>
-
-    @GET("v1/event")
-    fun searchByMonth(@Query("ym") yyyymm: String): Single<ConnpassEvent>
-
-    @GET("v1/event")
-    suspend fun getSeries(@Query("count") count: Int? = 10): ConnpassEvent
-
-
+    suspend fun searchEvent(
+        @Query("ymd") byDate: Int?,
+        @Query("ym") byMonth: Int?,
+        @Query("keyword_or") keyWord: String?
+    ): ConnpassEvent
 }

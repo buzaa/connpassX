@@ -1,5 +1,7 @@
 package giavu.co.jp.repository.model
 
+import java.io.Serializable
+
 data class Event(
     val `catch`: String,
     val accepted: Int,
@@ -22,4 +24,4 @@ data class Event(
     val title: String,
     val updated_at: String,
     val waiting: Int
-)
+) : Serializable

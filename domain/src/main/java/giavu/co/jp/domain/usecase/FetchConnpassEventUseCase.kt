@@ -1,10 +1,7 @@
 package giavu.co.jp.domain.usecase
 
-import giavu.co.jp.domain.model.ConnpassSeries
 import giavu.co.jp.repository.api.ConnpassApi
 import giavu.co.jp.repository.model.ConnpassEvent
-import io.reactivex.Single
-import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -16,17 +13,17 @@ class FetchConnpassEventUseCase(
     private val connpassApi: ConnpassApi
 ) {
 
-    suspend operator fun invoke(): ConnpassSeries {
+    suspend operator fun invoke(
+        eventOpenByDate: Int? = null,
+        eventOpenByMonth: Int? = null,
+        keyWord: String? = null
+    ): ConnpassEvent {
         return withContext(Dispatchers.IO) {
-            seriesMapper(connpassApi.getSeries())
+            connpassApi.searchEvent(
+                byDate = eventOpenByDate,
+                byMonth = eventOpenByMonth,
+                keyWord = keyWord
+            )
         }
-    }
-
-    private fun seriesMapper(connpassEvent: ConnpassEvent): ConnpassSeries {
-        return ConnpassSeries(
-            series = connpassEvent.events.map {
-                it.series
-            }
-        )
     }
 }
