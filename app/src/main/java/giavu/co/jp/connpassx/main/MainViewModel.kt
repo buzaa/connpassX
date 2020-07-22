@@ -3,6 +3,7 @@ package giavu.co.jp.connpassx.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import giavu.co.jp.connpassx.utils.SingleLiveEvent
 import giavu.co.jp.domain.usecase.FetchConnpassEventUseCase
 import giavu.co.jp.repository.model.ConnpassEvent
 
@@ -18,8 +19,13 @@ class MainViewModel(
     val conpassEvent: LiveData<ConnpassEvent>
         get() = _conpassEvent
 
+    private val _testSingleLiveData = SingleLiveEvent<Unit>()
+    val testSingleLiveData: SingleLiveEvent<Unit>
+        get() = _testSingleLiveData
+
     fun init(data: ConnpassEvent?) {
         this._conpassEvent.value = data
+        _testSingleLiveData.value = Unit
     }
 
     // private val compositeDisposable = CompositeDisposable()
